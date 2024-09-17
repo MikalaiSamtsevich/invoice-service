@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: invoice-service
+  kafka:
+    bootstrap-servers: http://localhost:29092
+    consumer:
+      value-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+server:
+  port: 8086
+
+otel:
+  exporter:
+    otlp:
+      logs:
+        protocol: grpc
+        endpoint: http://localhost:4317
+  resource:
+    attributes:
+      service.name: invoice-service
+      service: invoice-service
+      env: dev
